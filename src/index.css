@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--color-gray-100);
+}
+
+.font-inter {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+}
