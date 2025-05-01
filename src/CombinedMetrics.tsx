@@ -21,7 +21,7 @@ const CombinedMetricsDisplay: Component = () => {
   };
 
   return (
-      <div class="w-[580px] h-[404px] flex flex-col leading-[12px]">
+      <div class="w-full h-full flex flex-col">
           {/* Tabs */}
           <div class="flex gap-2 mb-4 font-medium text-[13px] tracking-[0px]">
               <span

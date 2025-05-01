@@ -99,8 +99,8 @@ const FunnelChart: Component = () => {
         };
 
         return (
-          <div class="w-full h-[404px] relative">
-            <Bar data={chartData} options={options} />
+          <div class="w-full h-full">
+            <Bar data={chartData} options={options} style={{ width: '100%', height: '100%' }} />
           </div>
         );
       }}

@@ -30,7 +30,7 @@ export default function SignupDetails() {
     });
 
     return (
-        <div class="col-span-12 bg-white rounded-2xl shadow-sm p-6 overflow-auto">
+        <div class="bg-white w-full h-full rounded-2xl shadow-sm p-6 overflow-auto">
 
             <div class="border border-gray-200 rounded-xl overflow-hidden">
                 <table class="min-w-full divide-y divide-gray-200 text-sm">
