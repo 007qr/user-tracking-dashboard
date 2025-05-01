@@ -58,11 +58,13 @@ interface FunnelMetric {
 interface CombinedMetrics {
     entity_type: string;
     entity_id: string;
-    unique_visitors: string;
-    guests: string;
-    signups: string;
-    guest_only: string;
-    visit_only: string;
+    total_sessions: string;
+    guests_count: string;
+    signups_count: string;
+    total_conversions: string;
+    signup_rate: string;
+    guest_rate: string;
+    conversion_rate: string;
 }
 
 let token = import.meta.env.VITE_TINYBIRD_TOKEN;
@@ -140,7 +142,7 @@ async function getCombinedMetric(): Promise<{
     data: CombinedMetrics[];
 }> {
     const res = await fetch(
-        `https://api.europe-west2.gcp.tinybird.co/v0/pipes/combined_metrics.json?campaign_limit=10&adset_limit=10&ad_limit=10&landing_page_limit=10&token=${token}`
+        `https://api.europe-west2.gcp.tinybird.co/v0/pipes/performance_metrics.json?campaign_limit=10&adset_limit=10&ad_limit=10&landing_page_limit=10&token=${token}`
     );
 
     return await res.json();
@@ -156,5 +158,5 @@ export {
     getMetric,
     getUniqueVisits,
     getFunnelMetric,
-    getCombinedMetric
+    getCombinedMetric,
 };

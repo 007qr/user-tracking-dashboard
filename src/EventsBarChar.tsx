@@ -37,7 +37,7 @@ const FunnelChart: Component = () => {
             {
               label: 'Funnel',
               data: [funnel.unique_visitors, funnel.guests, funnel.signups],
-              backgroundColor: ['#3b82f6', '#10b981', '#f59e0b'],
+              backgroundColor: ['#565bc5', '#565bc5', '#565bc5'],
               borderRadius: 6,
               borderSkipped: false,
             },
@@ -93,13 +93,13 @@ const FunnelChart: Component = () => {
             legend: { display: false },
           },
           scales: {
-            x: { grid: { display: false }, ticks: { color: '#6b7280' } },
-            y: { grid: { display: false }, ticks: { color: '#6b7280' } },
+            x: { diplay: false, grid: { display: false }, ticks: { color: '#6b7280' } },
+            y: { display: false, grid: { display: false }, ticks: { color: '#6b7280' } },
           },
         };
 
         return (
-          <div class="w-full h-64 relative">
+          <div class="w-full h-[404px] relative">
             <Bar data={chartData} options={options} />
           </div>
         );
