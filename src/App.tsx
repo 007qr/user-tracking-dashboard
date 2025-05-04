@@ -1,9 +1,11 @@
-import { type Component } from "solid-js";
+import { createEffect, createResource, Show, type Component } from "solid-js";
 
 import EventsBarChart from "./EventsBarChar";
 import CombinedMetricsDisplay from "./CombinedMetrics";
 import SignupDetails from "./SignupDetails";
 import Logo from "./logo";
+import { getEventsall, getMetric } from "./utils/endpoints";
+import parseData from "./utils/parseData";
 
 function GridCell({ number, text }: { number: string; text: string }) {
     return (
@@ -17,7 +19,13 @@ function GridCell({ number, text }: { number: string; text: string }) {
 }
 
 const App: Component = () => {
-    // const [metricsData] = createResource(getMetric);
+    const [metricsData] = createResource(getEventsall);
+
+    createEffect(() => {
+        if (!metricsData.loading) {
+            console.log(metricsData()?.data);
+        }
+    });
 
     return (
         <>
@@ -33,22 +41,31 @@ const App: Component = () => {
             <div class="grid grid-cols-12 items-center gap-[32px] justify-items-center">
                 <div class="col-span-6">
                     <div class="w-[580px] h-[404px] bg-white rounded-[24px] p-[12px]">
-                        <CombinedMetricsDisplay />
+                        <Show when={!metricsData.loading}>
+                            <CombinedMetricsDisplay
+                                data={parseData(metricsData()?.data)}
+                            />
+                        </Show>
                     </div>
                 </div>
                 <div class="col-span-6">
                     <div class="w-[580px] h-[404px] bg-white rounded-[24px] p-[12px]">
-                        <EventsBarChart />
+                        {/* <EventsBarChart /> */}
                     </div>
                 </div>
-
-                
             </div>
             <div class="col-span-12 m-[120px]">
-                <SignupDetails />
+                <Show
+                    when={!metricsData.loading}
+                    fallback={
+                        <div class="text-center text-gray-500 py-4">
+                            Loading signups data...
+                        </div>
+                    }
+                >
+                    <SignupDetails data={parseData(metricsData()?.data)} />
+                </Show>
             </div>
-            
-            
         </>
     );
 };

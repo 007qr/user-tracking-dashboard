@@ -148,6 +148,14 @@ async function getCombinedMetric(): Promise<{
     return await res.json();
 }
 
+async function getEventsall(): Promise<{data: Events[];}> {
+    const res = await fetch(
+        `https://api.europe-west2.gcp.tinybird.co/v0/pipes/events_all.json?token=${token}`
+    );
+
+    return await res.json();
+}
+
 export {
     getTopKAds,
     getTopKAdsets,
@@ -159,4 +167,5 @@ export {
     getUniqueVisits,
     getFunnelMetric,
     getCombinedMetric,
+    getEventsall
 };

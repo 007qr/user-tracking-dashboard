@@ -1,5 +1,3 @@
-import { getCustomer } from "./utils/endpoints";
-import { createResource } from "solid-js";
 import {
     createSolidTable,
     getCoreRowModel,
@@ -7,8 +5,9 @@ import {
     flexRender,
 } from "@tanstack/solid-table";
 
-export default function SignupDetails() {
-    const [customerData] = createResource(getCustomer);
+export default function SignupDetails({data}: {data: any}) {
+
+    console.log(data.detailedSignups);
 
     const columnHelper = createColumnHelper<any>();
 
@@ -23,7 +22,7 @@ export default function SignupDetails() {
 
     const table = createSolidTable({
         get data() {
-            return customerData()?.data ?? [];
+            return data.detailedSignups ?? [];
         },
         columns,
         getCoreRowModel: getCoreRowModel(),
@@ -63,12 +62,6 @@ export default function SignupDetails() {
                         ))}
                     </tbody>
                 </table>
-
-                {customerData.loading && (
-                    <div class="text-center text-gray-500 py-4">
-                        Loading customer data...
-                    </div>
-                )}
             </div>
         </div>
     );
