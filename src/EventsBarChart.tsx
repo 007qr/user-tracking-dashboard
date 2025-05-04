@@ -8,12 +8,12 @@ import {
   Legend,
 } from 'chart.js';
 import { Component, createResource, Show } from 'solid-js';
-import { getFunnelMetric } from './utils/endpoints';
+// import { getFunnelMetric } from './utils/endpoints';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const FunnelChart: Component = () => {
-  const [funnelData] = createResource(getFunnelMetric);
+  // const [funnelData] = createResource(getFunnelMetric);
 
   const createTooltip = () => {
     const el = document.createElement('div');

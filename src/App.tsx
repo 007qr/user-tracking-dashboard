@@ -1,11 +1,11 @@
 import { createEffect, createResource, Show, type Component } from "solid-js";
 
-import EventsBarChart from "./EventsBarChar";
 import CombinedMetricsDisplay from "./CombinedMetrics";
 import SignupDetails from "./SignupDetails";
 import Logo from "./logo";
 import { getEventsall, getMetric } from "./utils/endpoints";
 import parseData from "./utils/parseData";
+import FunnelChart from "./EventsBarChart";
 
 function GridCell({ number, text }: { number: string; text: string }) {
     return (
@@ -34,7 +34,9 @@ const App: Component = () => {
             </div>
             <div class="mx-auto w-max mb-[120px] mt-[12px]">
                 <h1 class="text-[64px] font-medium leading-[120%] tracking-[-2%]">
-                    870
+                    <Show when={!metricsData.loading}>
+                        {parseData(metricsData()?.data).signups}
+                    </Show>
                 </h1>
             </div>
 
@@ -50,7 +52,7 @@ const App: Component = () => {
                 </div>
                 <div class="col-span-6">
                     <div class="w-[580px] h-[404px] bg-white rounded-[24px] p-[12px]">
-                        {/* <EventsBarChart /> */}
+                        {/* <FunnelChart /> */}
                     </div>
                 </div>
             </div>

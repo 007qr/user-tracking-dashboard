@@ -180,7 +180,6 @@ export default function parseData(data: any) {
         return sortedArray.slice(0, k);
     }
 
-    // Set K value
     const K = 5;
 
     // Get top K campaigns, adsets, ads, and landing pages by guests and signups
@@ -299,7 +298,8 @@ export default function parseData(data: any) {
         campaign: topCampaignsBySignups,
         adset: topAdsetsBySignups,
         ad: topAdsBySignups,
-        landing_page: topLandingPagesBySignups
+        landing_page: topLandingPagesBySignups,
+        signups
     }
     
 }
